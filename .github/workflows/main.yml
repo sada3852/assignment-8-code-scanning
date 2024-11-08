@@ -46,13 +46,20 @@ jobs:
     
        - name: Build Docker Image
          run: docker build -f Dockerfile -t pygoat_app:latest 
+         
        - name: Docker Scout Scan
          uses: docker/scout-action@v1.15.0
          with:
-           dockerhub-user: ${{ secrets.sada3852 }}
-           dockerhub-password: ${{ secrets.REPO_PWD }}
+           dockerhub-user: ${{ secrets.samadame }}
+           dockerhub-password: ${{ secrets.dckr_pat_W6WS3rKFp1EKsTUk5OPs2J5G34A}}
            command: quickview,cves
            only-severities: critical,high
            sarif-file: scout-report.sarif
-        
+           
+       - name: Upload Artifact
+         uses: actions/upload-artifact@v3
+         if: always()
+         with:
+           name: docker-scout-findings
+           path: scout-report.sarif
           
