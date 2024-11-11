@@ -50,8 +50,8 @@ jobs:
        - name: Docker Scout Scan
          uses: docker/scout-action@v1.15.0
          with:
-           dockerhub-user: ${{ vars.REPO_samadame }}
-           dockerhub-password: ${{ secrets.REPO_dckr_pat_mT7yy7hwrjmiUePzXp5qZBrgfOE }}
+           dockerhub-user: ${{ secrets.REPO_USER }}
+           dockerhub-password: ${{ secrets.REPO_PWD }}
            command: quickview,cves
            only-severities: critical,high
            sarif-file: scout-report.sarif
